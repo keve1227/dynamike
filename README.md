@@ -16,6 +16,8 @@ expose [<exposure> | 1/<exposure>]
 
 Run this command in a folder containing the images with all your exposure levels. Each image needs to be labeled with its exposure, eg. a photo taken with an exposure of 1 second might have a name like ``20210914-E1.jpg``, where ``E1`` is its exposure label. Supported file formats include PNG, JPEG, TIFF, WebP and AVIF.
 
+The ``<exposure>`` argument is the fraction-of-a-second equivalent exposure of the output file.
+
 Valid exposure labels:
 - ``...-E1-`` (1 s)
 - ``... (e_5)`` (0.2 s or 1/5 s)
