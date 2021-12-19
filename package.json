@@ -1,0 +1,18 @@
+{
+    "name": "expose",
+    "version": "1.0.0",
+    "private": true,
+    "homepage": "https://github.com/Keve1227/expose",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Keve1227/expose.git"
+    },
+    "license": "MIT",
+    "author": "Keve1227 <killenlillen02@gmail.com>",
+    "type": "module",
+    "main": "expose.mjs",
+    "bin": "./expose.mjs",
+    "dependencies": {
+        "sharp": "^0.29.3"
+    }
+}
