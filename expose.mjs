@@ -3,7 +3,6 @@
 import sharp from "sharp";
 import fs from "fs";
 import path from "path";
-import { cwd } from "process";
 
 const outputExposure = 1 / Number(/^(?:1\/)?(.*)$/.exec(process.argv[2])[1]);
 
@@ -12,23 +11,29 @@ if (!Number.isFinite(outputExposure)) {
     process.exit(1);
 }
 
-console.log(`Exposure: ${Math.round(outputExposure * 1000) / 1000} s (1/${1 / outputExposure} s)`);
+console.log(`Output Exposure: ${Math.round(outputExposure * 1000) / 1000} s (1/${1 / outputExposure} s)`);
 console.log();
 
-const result = {};
-const dirents = await fs.promises.readdir(cwd(), { withFileTypes: true });
+const dirents = await fs.promises.readdir(process.cwd(), { withFileTypes: true });
 
+console.log("Processing...");
+const result = {};
 for (const dirent of dirents) {
     if (!dirent.isFile()) continue;
     if (!/.(?:jpe?g|png|webp|tiff?|avif)$/i.test(dirent.name)) continue;
 
-    const match = /\be_*(?:(\d+)_+)?(\d+)\b/i.exec(dirent.name);
-    if (!match) continue;
+    const file = path.join(process.cwd(), dirent.name);
+    const match = /\be_*(\d+)(?:_+(\d+))?\b/i.exec(dirent.name);
 
-    const [, dividend = 1, divisor] = match;
+    if (!match) {
+        console.log(`Skipping (${file}): Missing or invalid exposure label.`);
+        continue;
+    }
+
+    const [, dividend, divisor = 1] = match;
     const exposure = dividend / divisor;
 
-    const image = sharp(path.join(cwd(), dirent.name), { failOnError: false }).removeAlpha().raw({ depth: "float" });
+    const image = sharp(file, { failOnError: false }).removeAlpha().raw({ depth: "float" });
 
     const metadata = await image.metadata();
     const { data, info } = await image.toBuffer({ resolveWithObject: true });
@@ -37,6 +42,11 @@ for (const dirent of dirents) {
     result.metadata ??= metadata;
     result.pixels ??= Array(data.length / bpp).fill(0);
     result.info ??= info;
+    result.ref ??= file;
+
+    if (info.width != result.info.width || info.height != result.info.height) {
+        console.log(`Skipping (${file}): Width and height not matching (${result.ref}).`);
+    }
 
     for (let i = 0; i < info.size / bpp; i++) {
         let v = data.readFloatLE(i * bpp) / 0xff;
@@ -48,6 +58,9 @@ for (const dirent of dirents) {
 
     console.log(" + " + dirent.name);
 }
+
+console.log();
+console.log("Saving...");
 
 if (result.pixels) {
     const data = new Float32Array(result.pixels.length);
@@ -64,8 +77,8 @@ if (result.pixels) {
         },
     }).withMetadata({ orientation: result.metadata.orientation });
 
-    await out.tiff({ compression: "deflate", predictor: "float" }).toFile(path.join(cwd(), "out.tiff"));
+    const fileOut = path.join(process.cwd(), "out.tiff");
+    await out.tiff({ compression: "deflate", predictor: "float" }).toFile(fileOut);
 
-    console.log();
     console.log(">> out.tiff");
 }
