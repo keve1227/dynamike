@@ -14,16 +14,16 @@ npm install -g https://github.com/Keve1227/expose.git
 
 ## Usage
 
-To use this tool you will need to have a sequence of static photos with different exposures.
+To use this tool you will need to have a sequence of static photos with different [exposure levels](https://photographylife.com/what-is-exposure#what-is-exposure-in-cameras).
 
-To get the photographs for the exposure levels that you need, you will need a tripod and a digital camera with manual exposure and ISO controls. Your mobile phone might have a "Pro" mode in its camera app where these controls are made available.
+To get the photographs for the exposure levels that you need, you will need a tripod and a digital camera with manual shutter speed and ISO controls. Your mobile phone might have a "Pro" mode in its camera app where these controls are made available.
 
-1. Lock the ISO (sensor sensitivity) to a value like 50 for sunlit outdoor scenes, 100 for well-lit indoor scenes and > 200 for darker scenes, and don't change it. Images will tend to be noisier the higher this value is set so the lower you can set it, the better.
-2. Adjust the exposure level until the brightest part of your image is not clipping (i.e. has detail) and take a photo.
+1. Lock the [ISO (sensor sensitivity)](https://photographylife.com/what-is-exposure#iso-not-part-of-exposure) to a value like 50 for sunlit outdoor scenes, 100 for well-lit indoor scenes and > 200 for darker scenes, and don't change it. Images will tend to be noisier the higher this value is set so the lower you can set it, the better.
+2. Adjust the shutter speed / exposure time (lower = darker) until the brightest part of your image is not clipping (i.e. has detail) and take a photo.
 3. Keep on doubling your exposure time, each time taking a photo until the *darkest* part of the image has clear details.
 4. Transfer all your photos to their own folder on your computer and name them by their respective exposure levels.
 
-Each image needs to be labeled by its exposure in the format of ``e_<exposure>`` or ``e<exposure>`` (case-insensitive). These labels can only have integer (whole) numbers, as well as fractions in the form of ``e1_30`` for 1/30 second's exposure time. The exposure label cannot directly "touch" any surrounding numbers, letters (A-Z) or '_' (underscores). For example, a photo taken with an exposure of 2 seconds might have a name like ``20210914-E_2.jpg``, where ``E_2`` is its exposure label.
+Each image needs to be labeled by its exposure time in the format of ``e_<seconds>`` or ``e<seconds>`` (case-insensitive). These labels can only have integer (whole) numbers, as well as fractions in the form of ``e1_30`` for 1/30 second's exposure time. The exposure time label cannot directly "touch" any surrounding numbers, letters (A-Z) or '_' (underscores). For example, a photo taken with an exposure of 2 seconds might have a name like ``20210914-E_2.jpg``, where ``E_2`` is the exposure time label.
 
 Examples of valid labels:
 - ``...-E1-...`` (1 s)
@@ -39,6 +39,6 @@ Lastly, in the command line, run this command in the folder containing all your 
 expose [<exposure> | 1/<exposure>]
 ```
 
-> The ``<exposure>`` argument is the divisor/denominator of the fraction of a second equivalent exposure that the output image should use as its base exposure. A value of ``8`` or ``1/8`` means the output exposure will emulate a 1/8 second's exposure time.
+> The ``<exposure>`` argument is the divisor/denominator of the fraction of a second equivalent exposure time that the output image should use as its base exposure. A value of ``8`` or ``1/8`` means the output will emulate a 1/8 second's exposure time.
 
 If you set up everything correctly, congratulations!
