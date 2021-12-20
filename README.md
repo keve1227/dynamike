@@ -1,4 +1,4 @@
-# Expose
+# Dynamike
 
 This is a command line tool for creating high-dymanic-range images (HDRIs) for use in video editing or CGI software like [Blender](https://www.blender.org/). The output file is a .tiff with a bit-depth of 96, encoded in linear floating point RGB with lossless compression applied (deflate). Supported input file formats include PNG, JPEG, TIFF, WebP and AVIF.
 
@@ -6,10 +6,10 @@ This is a command line tool for creating high-dymanic-range images (HDRIs) for u
 
 ## Installation
 
-Use [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) to install the "expose" command line tool.
+Use [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) to install the "dynamike" command line tool.
 
 ```bash
-npm install -g https://github.com/Keve1227/expose.git
+npm install -g https://github.com/Keve1227/dynamike.git
 ```
 
 ## Usage
@@ -36,7 +36,7 @@ etc.
 Lastly, in the command line, run this command in the folder containing all your images. Insert another value where the ``[...]`` is. The output will be named ``out.tiff`` and be put in the same directory that the command is run in.
 
 ```bash
-expose [<exposure> | 1/<exposure>]
+dynamike [<exposure> | 1/<exposure>]
 ```
 
 > The ``<exposure>`` argument is the divisor/denominator of the fraction of a second equivalent exposure time that the output image should use as its base exposure. A value of ``8`` or ``1/8`` means the output will emulate a 1/8 second's exposure time.

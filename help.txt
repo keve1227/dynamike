@@ -1,1 +1,1 @@
-expose [<exposure> | 1/<exposure>]
+dynamike [<exposure> | 1/<exposure>]

@@ -1,17 +1,17 @@
 {
-    "name": "expose",
+    "name": "dynamike",
     "version": "1.0.0",
-    "homepage": "https://github.com/Keve1227/expose",
+    "homepage": "https://github.com/Keve1227/dynamike",
     "repository": {
         "type": "git",
-        "url": "https://github.com/Keve1227/expose.git"
+        "url": "https://github.com/Keve1227/dynamike.git"
     },
     "license": "MIT",
     "author": "Keve1227 <killenlillen02@gmail.com>",
     "type": "module",
-    "main": "expose.mjs",
+    "main": "index.mjs",
     "bin": {
-        "expose": "./expose.mjs"
+        "dynamike": "./index.mjs"
     },
     "files": [
         "./help.txt"
