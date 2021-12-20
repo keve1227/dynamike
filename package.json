@@ -1,6 +1,13 @@
 {
     "name": "dynamike",
-    "version": "1.0.0",
+    "version": "1.0.1",
+    "keywords": [
+        "hdr",
+        "hdri",
+        "cli",
+        "tool",
+        "cgi"
+    ],
     "homepage": "https://github.com/Keve1227/dynamike",
     "repository": {
         "type": "git",
@@ -18,5 +25,6 @@
     ],
     "dependencies": {
         "sharp": "^0.29.3"
-    }
+    },
+    "preferGlobal": true
 }
