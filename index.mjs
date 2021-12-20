@@ -46,6 +46,7 @@ for (const dirent of dirents) {
 
     if (info.width != result.info.width || info.height != result.info.height) {
         console.log(`Skipping (${file}): Width and height not matching (${result.ref}).`);
+        continue;
     }
 
     for (let i = 0; i < info.size / bpp; i++) {
