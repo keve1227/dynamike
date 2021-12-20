@@ -9,7 +9,7 @@ This is a command line tool for creating high-dymanic-range images (HDRIs) for u
 Use [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) to install the "dynamike" command line tool.
 
 ```bash
-npm install -g https://github.com/Keve1227/dynamike.git
+npm install -g dynamike
 ```
 
 ## Usage
