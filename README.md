@@ -1,6 +1,6 @@
 # Expose
 
-This is a command line tool for creating high-dymanic-range for use in video editing or CGI software like [Blender](https://www.blender.org/). The output file is a .tiff with a bit-depth of 96, encoded in linear floating point RGB with lossless compression applied (deflate). Supported input file formats include PNG, JPEG, TIFF, WebP and AVIF.
+This is a command line tool for creating high-dymanic-range images (HDRIs) for use in video editing or CGI software like [Blender](https://www.blender.org/). The output file is a .tiff with a bit-depth of 96, encoded in linear floating point RGB with lossless compression applied (deflate). Supported input file formats include PNG, JPEG, TIFF, WebP and AVIF.
 
 > For use in Blender, set the color space to "Linear" on the Image Texture node.
 
