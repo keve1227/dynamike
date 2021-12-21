@@ -24,6 +24,7 @@
         "./help.txt"
     ],
     "dependencies": {
+        "exif-reader": "^1.0.3",
         "sharp": "^0.29.3"
     },
     "preferGlobal": true

@@ -3,6 +3,7 @@
 import sharp from "sharp";
 import fs from "fs";
 import path from "path";
+import exif from "exif-reader";
 
 const outputExposure = 1 / Number(/^(?:1\/)?(.*)$/.exec(process.argv[2])[1]);
 
@@ -23,19 +24,26 @@ for (const dirent of dirents) {
     if (!/.(?:jpe?g|png|webp|tiff?|avif)$/i.test(dirent.name)) continue;
 
     const file = path.join(process.cwd(), dirent.name);
-    const match = /\be_*(\d+)(?:_+(\d+))?\b/i.exec(dirent.name);
+    const image = sharp(file, { failOnError: false }).removeAlpha().raw({ depth: "float" });
+    const metadata = await image.metadata();
 
-    if (!match) {
-        console.log(`Skipping (${file}): Missing or invalid exposure label.`);
+    let exposureTime;
+
+    const labelMatch = /\be_*(\d+)(?:_+(\d+))?\b/i.exec(dirent.name);
+    if (labelMatch) {
+        const [, dividend, divisor = 1] = labelMatch;
+        exposureTime = dividend / divisor;
+    }
+
+    if (!exposureTime && metadata.exif) {
+        exposureTime = Number(exif(metadata.exif).exif["ExposureTime"]);
+    }
+
+    if (!exposureTime) {
+        console.log(`Skipping (${file}): Missing or invalid exposure time label.`);
         continue;
     }
 
-    const [, dividend, divisor = 1] = match;
-    const exposure = dividend / divisor;
-
-    const image = sharp(file, { failOnError: false }).removeAlpha().raw({ depth: "float" });
-
-    const metadata = await image.metadata();
     const { data, info } = await image.toBuffer({ resolveWithObject: true });
     const bpp = info.size / info.width / info.height / info.channels;
 
@@ -52,7 +60,7 @@ for (const dirent of dirents) {
     for (let i = 0; i < info.size / bpp; i++) {
         let v = data.readFloatLE(i * bpp) / 0xff;
         v = v <= 0.01 ? 0 : (v - 0.01) / 0.99;
-        v = v <= 0.04045 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4 / exposure;
+        v = v <= 0.04045 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4 / exposureTime;
 
         result.pixels[i] = Math.max(result.pixels[i], v);
     }
