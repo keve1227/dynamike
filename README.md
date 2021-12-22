@@ -43,3 +43,21 @@ dynamike [<exposure> | 1/<exposure>]
 > The ``<exposure>`` argument is the divisor/denominator of the fraction of a second equivalent exposure time that the output image should use as its base exposure. A value of ``8`` or ``1/8`` means the output will emulate a 1/8 second's exposure time.
 
 If you set up everything correctly, congratulations!
+
+## Showcase
+
+A table comparing the results of different Blender view transforms with a decently exposed source image and the final output/result.
+
+![Table of comparisons](https://github.com/Keve1227/dynamike/blob/main/showcase/comparisons.webp)
+
+Notice how the combination of an HDRI with the Filmic view transform produces much better details in areas where for example the thin branches meet the sky. The blue of the sky is also fully captured.
+
+---
+
+Animating the exposure makes it very clear the benefits of using HDRIs for realisting lighting.
+
+![Sliding exposure](https://github.com/Keve1227/dynamike/blob/main/showcase/animation.webp)
+
+Here are some still frames:
+
+![Still frames](https://github.com/Keve1227/dynamike/blob/main/showcase/strip.webp)
