@@ -54,7 +54,7 @@ Notice how the combination of an HDRI with the Filmic view transform produces mu
 
 ---
 
-Animating the exposure makes it very clear the benefits of using HDRIs for realisting lighting.
+Animating the exposure makes it very clear the benefits of using HDRIs for realistic lighting.
 
 ![Sliding exposure](https://github.com/Keve1227/dynamike/blob/main/showcase/animation.webp)
 
