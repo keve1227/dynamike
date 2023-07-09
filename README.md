@@ -22,7 +22,8 @@ To get the photographs for the exposure levels that you need, you will need a tr
 2. Adjust the shutter speed / exposure time (lower = darker) until the brightest part of your image is not clipping (i.e. has detail) and take a photo.
 3. Keep on doubling your exposure time, each time taking a photo until the *darkest* part of the image has clear details.
 4. Transfer all your photos to their own folder on your computer and name them by their respective exposure levels.
-   > Note that labeling the files are not necessary if your images have valid [Exif](https://en.wikipedia.org/wiki/Exif) data for the exposure times. If an image has both Exif data *and* a label for its exposure time, only the label is used.
+
+> Note that labeling the files is not necessary if your images have valid [Exif](https://en.wikipedia.org/wiki/Exif) data for the exposure times. If an image has both Exif data *and* a label for its exposure time, only the label is used.
 
 Each image needs to be labeled by its exposure time in the format of ``e_<seconds>`` or ``e<seconds>`` (case-insensitive). These labels can only have integer (whole) numbers, as well as fractions in the form of ``e1_30`` for 1/30 second's exposure time. The exposure time label cannot directly "touch" any surrounding numbers, letters (A-Z) or '_' (underscores). For example, a photo taken with an exposure of 2 seconds might have a name like ``20210914-E_2.jpg``, where ``E_2`` is the exposure time label.
 
